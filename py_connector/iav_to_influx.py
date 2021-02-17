@@ -135,12 +135,15 @@ def on_message(client, userdata, msg):
 def main():
 	print("Starting MQTT Client")
 	# MQTT connection parameters
+	if config.mqtt_client_id == "":
+		config.mqtt_client_id = "py_connector"
 	client = mqtt.Client(client_id=config.mqtt_client_id, protocol=mqtt.MQTTv311, transport="tcp")
 	client.on_connect = on_connect
 	client.on_disconnect = on_disconnect
 	#client.on_log = on_log
 	client.on_message = on_message
 
-	client.username_pw_set(config.mqtt_username, config.mqtt_password)
+	if config.mqtt_username != "" or config.mqtt_username != "":
+		client.username_pw_set(config.mqtt_username, config.mqtt_password)
 	client.connect(host=config.mqtt_server, port=config.mqtt_port, keepalive=60)
 	client.loop_forever()

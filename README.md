@@ -1,26 +1,49 @@
-# Asset Monitoring Dashboard
+# Asset Monitoring Dashboard: Meraki IoT + Industrial Asset Vision
 
-2in1 Dashboard for Cisco Meraki IoT Sensors + Cisco Industrial Asset Vision Sensors. Simply install your own dashboard anywhere within minutes.
+2in1 Dashboard: Simply install your own dashboard anywhere within minutes.
+
+* **Meraki MT sensors** – ideal for Meraki network users to monitor indoor IT facilities like network closets
+* **Cisco Industrial Asset Vision sensors** – a new IoT solution that integrates together new Cisco sensors, an Cisco IoT gateway and a new cloud-based dashboard to monitor OT assets and facilities in outdoor and industrial indoor spaces
+
 
 ![](images/grafana-dashboard.png)
 
 ![](images/architecture.png)
 
-## Installation
+## Features
 
-**Prerequisites**:
+* Deploy the whole environment within minutes via Docker-Compose
+* Pre-built Grafana dashboard
+* Data will remain in the project folder even after the containers are shut down (using Docker Volumes)
+* All Meraki sensor types are supported.
+* Historical Meraki MT sensor data will be downloaded.
+* All IAV sensor types are supported except the GPS sensors.
+
+## Installation & Configuration
+
+### Prerequisites
 
 * git, Docker/Docker-compose installed
 * For Cisco Industrial Asset Vision (IAV): MQTT broker is setup or this environment is open for MQTT connectivity.
 
-1. Clone repository `git clone https://github.com/flopach/asset-monitoring-dashboard`
+### Installation Steps
 
-2. Configure your environment and insert your data into the `py_connector/config.py` file.
+1. Clone repository
+
+```git clone https://github.com/flopach/asset-monitoring-dashboard```
+
+2. Configure your environment and insert your credentials into the `py_connector/config.py` file.
 
 
-3. Start all containers with `docker-compose up` from the same directory. This may take several minutes.
+3. Start all containers from the same directory. This may take several minutes.
 
-4. Login to Grafana dashboard and configure the dashboard by easily inserting the measurement. Additionally the query editor from the InfluxDB UI can help.
+```docker-compose up```
+
+Can also run in daemon mode: `docker-compose up -d`
+
+### Configuration 
+
+Login to Grafana dashboard and configure your dashboard modules by easily inserting the measurement name. Additionally, use the query editor from the InfluxDB UI as a help to copy the Flux language syntax.
 
 Login **Grafana** - [http://localhost:3000](http://localhost:3000)
 
@@ -36,11 +59,7 @@ Login **InfluxDB** - [http://localhost:8086](http://localhost:3000)
 
 ![](images/influxdb-query.png)
 
-## Features
 
-* Data will remain in the project folder even after the containers are shut down
-* All Meraki sensor types are support.
-* All IAV sensor types are supported except the GPS sensors.
 
 ## Versioning
 
@@ -54,3 +73,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ## Further Links
 
 * [Cisco DevNet Website](https://developer.cisco.com)
+* [Industrial Asset Vision Documentation](https://developer.cisco.com/docs/iotod/#!introduction)
