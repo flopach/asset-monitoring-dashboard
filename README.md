@@ -1,9 +1,11 @@
 # Asset Monitoring Dashboard: Meraki IoT + Industrial Asset Vision
 
-2in1 Dashboard: Simply install your own dashboard anywhere within minutes.
+2in1 Dashboard: Simply install your own dashboard anywhere within minutes with **Docker-Compose**, **InfluxDBv2** time series database and **Grafana** dashboard.
 
 * **Meraki MT sensors** – ideal for Meraki network users to monitor indoor IT facilities like network closets
 * **Cisco Industrial Asset Vision sensors** – a new IoT solution that integrates together new Cisco sensors, an Cisco IoT gateway and a new cloud-based dashboard to monitor OT assets and facilities in outdoor and industrial indoor spaces
+
+> **[Check also out the YouTube demo video](https://youtu.be/XDs7jbah5L8 )**
 
 ![](images/grafana-dashboard.png)
 
@@ -17,6 +19,9 @@
 * All Meraki sensor types are supported.
 * Historical Meraki MT sensor data will be downloaded.
 * All IAV sensor types are supported except the GPS sensors.
+* The connector script is only compatibel with InfluxDB 2.x
+
+![](images/process.gif)
 
 ## Installation & Configuration
 
