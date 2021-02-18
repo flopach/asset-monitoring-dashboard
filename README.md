@@ -5,7 +5,6 @@
 * **Meraki MT sensors** – ideal for Meraki network users to monitor indoor IT facilities like network closets
 * **Cisco Industrial Asset Vision sensors** – a new IoT solution that integrates together new Cisco sensors, an Cisco IoT gateway and a new cloud-based dashboard to monitor OT assets and facilities in outdoor and industrial indoor spaces
 
-
 ![](images/grafana-dashboard.png)
 
 ![](images/architecture.png)
@@ -39,7 +38,11 @@
 
 ```docker-compose up```
 
-Can also run in daemon mode: `docker-compose up -d`
+More useful commands:
+
+* Run as daemon mode: `docker-compose up -d`
+* Stops containers: `docker-compose down`
+* Build again the containers (when you changed the Python scripts): `docker-compose build`
 
 ### Configuration 
 
