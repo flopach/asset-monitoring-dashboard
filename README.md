@@ -1,3 +1,5 @@
+[![published](https://static.production.devnetcloud.com/codeexchange/assets/images/devnet-published.svg)](https://developer.cisco.com/codeexchange/github/repo/flopach/asset-monitoring-dashboard)
+
 # Asset Monitoring Dashboard: Meraki IoT + Industrial Asset Vision
 
 2in1 Dashboard: Simply install your own dashboard anywhere within minutes with **Docker-Compose**, **InfluxDBv2** time series database and **Grafana** dashboard.
