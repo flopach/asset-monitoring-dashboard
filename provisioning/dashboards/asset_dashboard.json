@@ -16,6 +16,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
+  "id": 1,
   "links": [],
   "panels": [
     {
@@ -228,7 +229,7 @@
           ],
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"sensordata_bucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"CBC LAB Tür\")\n  |> filter(fn: (r) => r[\"_field\"] == \"status\")",
+          "query": "from(bucket: \"sensordata_bucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"<insert_here>\")\n  |> filter(fn: (r) => r[\"_field\"] == \"status\")",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -339,7 +340,7 @@
           ],
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"sensordata_bucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Eingang CBC-Tür\")\n  |> filter(fn: (r) => r[\"_field\"] == \"status\")",
+          "query": "from(bucket: \"sensordata_bucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"<insert_here>\")\n  |> filter(fn: (r) => r[\"_field\"] == \"status\")",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -450,7 +451,7 @@
           ],
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"sensordata_bucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"marcusmi-water-leak\")",
+          "query": "from(bucket: \"sensordata_bucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"<insert_here>\")",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -542,7 +543,7 @@
           ],
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"sensordata_bucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"stmatthe-temp-humidy\")\n  |> filter(fn: (r) => r[\"_field\"] == \"temperature\")",
+          "query": "from(bucket: \"sensordata_bucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"<insert_here>\")\n  |> filter(fn: (r) => r[\"_field\"] == \"temperature\")",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -582,7 +583,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:285",
           "decimals": 0,
           "format": "celsius",
           "label": null,
@@ -592,7 +592,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:286",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -673,7 +672,7 @@
           ],
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"sensordata_bucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"stmatthe-temp-humidy\")\n  |> filter(fn: (r) => r[\"_field\"] == \"temperature\")",
+          "query": "from(bucket: \"sensordata_bucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"<insert_here>\")\n  |> filter(fn: (r) => r[\"_field\"] == \"temperature\")",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -821,7 +820,7 @@
           ],
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"sensordata_bucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"stmatthe-door\")",
+          "query": "from(bucket: \"sensordata_bucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"<insert_here>\")",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -913,7 +912,7 @@
           ],
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"sensordata_bucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"CBC Temperatur 1\")\n  |> filter(fn: (r) => r[\"_field\"] == \"temperature\")",
+          "query": "from(bucket: \"sensordata_bucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"<insert_here>\")\n  |> filter(fn: (r) => r[\"_field\"] == \"temperature\")",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -953,7 +952,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:224",
           "decimals": 0,
           "format": "celsius",
           "label": null,
@@ -963,7 +961,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:225",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1063,7 +1060,7 @@
           ],
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"sensordata_bucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"marcusmi-water-leak\")",
+          "query": "from(bucket: \"sensordata_bucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"<insert_here>\")",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -1155,7 +1152,7 @@
           ],
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"sensordata_bucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"stmatthe-temp-humidy\")\n  |> filter(fn: (r) => r[\"_field\"] == \"humidity\")",
+          "query": "from(bucket: \"sensordata_bucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"<insert_here>\")\n  |> filter(fn: (r) => r[\"_field\"] == \"humidity\")",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -1300,7 +1297,7 @@
           ],
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"sensordata_bucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"szreter-light-1\")",
+          "query": "from(bucket: \"sensordata_bucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"<insert_here>\")",
           "queryType": "randomWalk",
           "refId": "A",
           "resultFormat": "time_series",
@@ -1429,7 +1426,7 @@
           ],
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"sensordata_bucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"CBC Temperatur 1\")\n  |> filter(fn: (r) => r[\"_field\"] == \"humidity\")",
+          "query": "from(bucket: \"sensordata_bucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"<insert_here>\")\n  |> filter(fn: (r) => r[\"_field\"] == \"humidity\")",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -1469,7 +1466,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:533",
           "format": "humidity",
           "label": null,
           "logBase": 1,
@@ -1478,7 +1474,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:534",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1559,7 +1554,7 @@
           ],
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"sensordata_bucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"stmatthe-temp-humidy\")\n  |> filter(fn: (r) => r[\"_field\"] == \"humidity\")",
+          "query": "from(bucket: \"sensordata_bucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"<insert_here>\")\n  |> filter(fn: (r) => r[\"_field\"] == \"humidity\")",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -1703,7 +1698,7 @@
           ],
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"sensordata_bucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"szreter-occup-1\")\n  |> filter(fn: (r) => r[\"_field\"] == \"occupancy\")",
+          "query": "from(bucket: \"sensordata_bucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"<insert_here>\")\n  |> filter(fn: (r) => r[\"_field\"] == \"occupancy\")",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -1764,6 +1759,151 @@
         "align": false,
         "alignLevel": null
       }
+    },
+    {
+      "aliasColors": {},
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": null,
+            "filterable": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 0,
+        "y": 22
+      },
+      "hiddenSeries": false,
+      "id": 24,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "rightSide": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.3.7",
+      "pointradius": 1,
+      "points": true,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": true,
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"sensordata_bucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"<insert_here>\")\n  |> filter(fn: (r) => r[\"_field\"] == \"status\")",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Open/Close Sensor History",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": "1",
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     }
   ],
   "refresh": false,
@@ -1774,12 +1914,12 @@
     "list": []
   },
   "time": {
-    "from": "2021-02-10T11:06:27.083Z",
-    "to": "2021-02-10T20:02:53.802Z"
+    "from": "now-90d",
+    "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Asset Dashboard",
   "uid": "Ufx4RrLGz",
-  "version": 1
+  "version": 2
 }
