@@ -5,7 +5,7 @@
 * **Meraki MT sensors** – ideal for Meraki network users to monitor indoor IT facilities like network closets
 * **Cisco Industrial Asset Vision sensors** – a new IoT solution that integrates together new Cisco sensors, an Cisco IoT gateway and a new cloud-based dashboard to monitor OT assets and facilities in outdoor and industrial indoor spaces
 
-> **[Check also out the YouTube demo video](https://youtu.be/XDs7jbah5L8 )**
+> **[Check also out the YouTube demo video](https://youtu.be/XDs7jbah5L8)**
 
 ![](images/grafana-dashboard.png)
 
