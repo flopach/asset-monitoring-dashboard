@@ -7,6 +7,7 @@ import time
 import json
 import config
 import influxdb_connect
+from datetime import datetime
 
 def on_connect(client, userdata, flags, rc):
 	""" When connected: """
@@ -29,108 +30,99 @@ def on_message(client, userdata, msg):
 	rawjson = msg.payload.decode('utf-8')
 	data = json.loads(rawjson)
 	#print(data) #uncomment for troubleshooting
-
-	# Temperature + Humidity
-	# AV200, AV201, AV203
-	if "data_temperature" in data["payload"] and "data_humidity" in data["payload"]:
-
-		try:
-			influxdb_connect.write_api.write(
-				bucket=config.influx_bucket,
-				org=config.influx_org,
-				record=influxdb_connect.Point(data["metadata"]["sensorName"])
-				.tag("asset_name", data["metadata"]["assetName"])
-				.field("temperature",data["payload"]["data_temperature"])
-				.field("humidity",data["payload"]["data_humidity"])
-				.time(data["metadata"]["timestamp"]))
-		except Exception as e:
-			print("Can't write to database: {}".format(e))
 	
-	# Occupancy Sensor
-	# AV207
-	elif  "data_occupancy" in data["payload"] and "data_illuminance" in data["payload"]:
+	try: 
+		# Temperature + Humidity
+		# AV200, AV201, AV203
+		if "temperature" in data["telemetry"] and "humidity" in data["telemetry"]:
+			try:
+				influxdb_connect.write_api.write(
+					bucket=config.influx_bucket,
+					org=config.influx_org,
+					record=influxdb_connect.Point(data["name"])
+					.tag("asset_name", data["asset"]["name"])
+					.field("temperature",float(data["telemetry"]["temperature"]["value"]))
+					.field("humidity",float(data["telemetry"]["humidity"]["value"]))
+					.time(datetime.fromtimestamp(data["timestamp"]/1000).strftime("%Y/%m/%d %I:%M:%S %p")))
+			except Exception as e:
+				print("Can't write to database: {}".format(e))
 		
-		try:
-			if data["payload"]["data_occupancy"] == "available":
-				occupancy = 1
-			elif data["payload"]["data_occupancy"] == "occupied":
-				occupancy = 0
-			else:
-				occupancy = 404
+		# Machine Temperature Sensor
+		# AV250
+		elif "temperature"  in data["telemetry"]:
+			try:
+				influxdb_connect.write_api.write(
+					bucket=config.influx_bucket,
+					org=config.influx_org,
+					record=influxdb_connect.Point(data["name"])
+					.tag("asset_name", data["asset"]["name"])
+					.field("temperature",float(data["telemetry"]["temperature"]["value"]))
+					.time(datetime.fromtimestamp(data["timestamp"]/1000).strftime("%Y/%m/%d %I:%M:%S %p")))
+			except Exception as e:
+				print("Can't write to database: {}".format(e))
 
-			influxdb_connect.write_api.write(
-				bucket=config.influx_bucket,
-				org=config.influx_org,
-				record=influxdb_connect.Point(data["metadata"]["sensorName"])
-				.tag("asset_name", data["metadata"]["assetName"])
-				.field("temperature",data["payload"]["data_temperature"])
-				.field("illuminance",data["payload"]["data_illuminance"])
-				.field("occupancy",occupancy)
-				.time(data["metadata"]["timestamp"]))
-		except Exception as e:
-			print("Can't write to database: {}".format(e))
+		# Occupancy Sensor
+		# AV207
+		elif  "occupied" in data["telemetry"] and "illuminance" in data["telemetry"]:
+			try:
+				influxdb_connect.write_api.write(
+					bucket=config.influx_bucket,
+					org=config.influx_org,
+					record=influxdb_connect.Point(data["name"])
+					.tag("asset_name", data["asset"]["name"])
+					.field("temperature",float(data["telemetry"]["temperature"]["value"]))
+					.field("illuminance",int(data["telemetry"]["illuminance"]["value"]))
+					.field("occupancy",data["telemetry"]["occupied"]["value"])
+					.time(datetime.fromtimestamp(data["timestamp"]/1000).strftime("%Y/%m/%d %I:%M:%S %p")))
+			except Exception as e:
+				print("Can't write to database: {}".format(e))
 
-	# Water Leak Sensor
-	# AV205
-	elif "data_waterLeak" in data["payload"]:
-		
-		try:
-			if data["payload"]["data_waterLeak"] == True:
-				waterLeak = 1
-			elif data["payload"]["data_waterLeak"] == False:
-				waterLeak = 0
-			else:
-				waterLeak = 404
+		# Water Leak Sensor
+		# AV205
+		elif "waterLeak" in data["telemetry"]:
+			try:
+				influxdb_connect.write_api.write(
+					bucket=config.influx_bucket,
+					org=config.influx_org,
+					record=influxdb_connect.Point(data["name"])
+					.tag("asset_name", data["asset"]["name"])
+					.field("waterleak", data["telemetry"]["waterLeak"]["value"])
+					.time(datetime.fromtimestamp(data["timestamp"]/1000).strftime("%Y/%m/%d %I:%M:%S %p")))
+			except Exception as e:
+				print("Can't write to database: {}".format(e))
 
-			influxdb_connect.write_api.write(
-				bucket=config.influx_bucket,
-				org=config.influx_org,
-				record=influxdb_connect.Point(data["metadata"]["sensorName"])
-				.tag("asset_name", data["metadata"]["assetName"])
-				.field("waterleak",waterLeak)
-				.time(data["metadata"]["timestamp"]))
-		except Exception as e:
-			print("Can't write to database: {}".format(e))
+		# Door/Window Sensor
+		# AV204
+		elif "doorOpen" in data["telemetry"]:
+			try:
+				influxdb_connect.write_api.write(
+					bucket=config.influx_bucket,
+					org=config.influx_org,
+					record=influxdb_connect.Point(data["name"])
+					.tag("asset_name", data["asset"]["name"])
+					.field("doorStatus", data["telemetry"]["doorOpen"]["value"])
+					.time(datetime.fromtimestamp(data["timestamp"]/1000).strftime("%Y/%m/%d %I:%M:%S %p")))
+			except Exception as e:
+				print("Can't write to database: {}".format(e))
 
-	# Door/Window Sensor
-	# AV204
-	elif "data_doorStatus" in data["payload"]:
-		
-		try:
-			if data["payload"]["data_doorStatus"] == "open":
-				doorStatus = 1
-			elif data["payload"]["data_doorStatus"] == "closed":
-				doorStatus = 0
-			else:
-				doorStatus = 404
-			
-			influxdb_connect.write_api.write(
-				bucket=config.influx_bucket,
-				org=config.influx_org,
-				record=influxdb_connect.Point(data["metadata"]["sensorName"])
-				.tag("asset_name", data["metadata"]["assetName"])
-				.field("doorStatus",doorStatus)
-				.time(data["metadata"]["timestamp"]))
-		except Exception as e:
-			print("Can't write to database: {}".format(e))
+		# Light Level Sensor
+		# AV206
+		elif "illuminance" in data["telemetry"]:
+			try:
+				influxdb_connect.write_api.write(
+					bucket=config.influx_bucket,
+					org=config.influx_org,
+					record=influxdb_connect.Point(data["name"])
+					.tag("asset_name", data["asset"]["name"])
+					.field("illuminance",int(data["telemetry"]["illuminance"]["value"]))
+					.time(datetime.fromtimestamp(data["timestamp"]/1000).strftime("%Y/%m/%d %I:%M:%S %p")))
+			except Exception as e:
+				print("Can't write to database: {}".format(e))
 
-	# Light Level Sensor
-	# AV206
-	elif "data_illuminance" in data["payload"]:
-		
-		try:
-			influxdb_connect.write_api.write(
-				bucket=config.influx_bucket,
-				org=config.influx_org,
-				record=influxdb_connect.Point(data["metadata"]["sensorName"])
-				.tag("asset_name", data["metadata"]["assetName"])
-				.field("illuminance",data["payload"]["data_illuminance"])
-				.time(data["metadata"]["timestamp"]))
-		except Exception as e:
-			print("Can't write to database: {}".format(e))
-
-	else:
-		print("MQTT Data Error - could not find any existing configuration for inserting to Influx (GPS sensors are not yet supported).")
+		else:
+			print("MQTT Data Error - could not find any existing configuration for inserting to Influx (GPS sensors are not yet supported).")
+	except Exception as e:
+		print("Can't parse the message: {}".format(e))
 
 def main():
 	print("Starting MQTT Client")
@@ -143,7 +135,7 @@ def main():
 	#client.on_log = on_log
 	client.on_message = on_message
 
-	if config.mqtt_username != "" or config.mqtt_username != "":
+	if config.mqtt_username != "" or config.mqtt_password != "":
 		client.username_pw_set(config.mqtt_username, config.mqtt_password)
 	client.connect(host=config.mqtt_server, port=config.mqtt_port, keepalive=60)
 	client.loop_forever()
