@@ -46,20 +46,6 @@ def on_message(client, userdata, msg):
 					.time(datetime.fromtimestamp(data["timestamp"]/1000).strftime("%Y/%m/%d %I:%M:%S %p")))
 			except Exception as e:
 				print("Can't write to database: {}".format(e))
-		
-		# Machine Temperature Sensor
-		# AV250
-		elif "temperature"  in data["telemetry"]:
-			try:
-				influxdb_connect.write_api.write(
-					bucket=config.influx_bucket,
-					org=config.influx_org,
-					record=influxdb_connect.Point(data["name"])
-					.tag("asset_name", data["asset"]["name"])
-					.field("temperature",float(data["telemetry"]["temperature"]["value"]))
-					.time(datetime.fromtimestamp(data["timestamp"]/1000).strftime("%Y/%m/%d %I:%M:%S %p")))
-			except Exception as e:
-				print("Can't write to database: {}".format(e))
 
 		# Occupancy Sensor
 		# AV207
@@ -115,6 +101,20 @@ def on_message(client, userdata, msg):
 					record=influxdb_connect.Point(data["name"])
 					.tag("asset_name", data["asset"]["name"])
 					.field("illuminance",int(data["telemetry"]["illuminance"]["value"]))
+					.time(datetime.fromtimestamp(data["timestamp"]/1000).strftime("%Y/%m/%d %I:%M:%S %p")))
+			except Exception as e:
+				print("Can't write to database: {}".format(e))
+		
+		# Machine Temperature Sensor
+		# AV250
+		elif "temperature"  in data["telemetry"]:
+			try:
+				influxdb_connect.write_api.write(
+					bucket=config.influx_bucket,
+					org=config.influx_org,
+					record=influxdb_connect.Point(data["name"])
+					.tag("asset_name", data["asset"]["name"])
+					.field("temperature",float(data["telemetry"]["temperature"]["value"]))
 					.time(datetime.fromtimestamp(data["timestamp"]/1000).strftime("%Y/%m/%d %I:%M:%S %p")))
 			except Exception as e:
 				print("Can't write to database: {}".format(e))
