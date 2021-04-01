@@ -104,5 +104,3 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 * [Cisco DevNet Website](https://developer.cisco.com)
 * [Industrial Asset Vision Documentation](https://developer.cisco.com/docs/iotod/#!introduction)
-=======
-[![published](https://static.production.devnetcloud.com/codeexchange/assets/images/devnet-published.svg)](https://developer.cisco.com/codeexchange/github/repo/flopach/asset-monitoring-dashboard)
