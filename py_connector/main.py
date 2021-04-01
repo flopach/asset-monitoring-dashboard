@@ -1,4 +1,4 @@
-# Asset Monitoring Dashboard 1.0
+# Asset Monitoring Dashboard 1.1
 # Cisco Meraki IoT + Cisco Industrial Asset Vision
 # MIT License, flopach / Cisco Systems 2021
 

@@ -1,4 +1,4 @@
-# Asset Monitoring Dashboard 1.0
+# Asset Monitoring Dashboard 1.1
 # Cisco Meraki IoT + Cisco Industrial Asset Vision
 # MIT License, flopach / Cisco Systems 2021
 #
@@ -7,7 +7,7 @@
 version: '3.8'
 services:
   influxdb:
-    image: quay.io/influxdb/influxdb:v2.0.3
+    image: quay.io/influxdb/influxdb:v2.0.4
     volumes:
       - ${PWD}/influxdbv2:/root/.influxdbv2
     ports:
@@ -15,7 +15,7 @@ services:
     networks:
       - net_monitoring
   influxdb_setup:
-    image: quay.io/influxdb/influxdb:v2.0.3
+    image: quay.io/influxdb/influxdb:v2.0.4
      #  do NOT edit OR sync parameters with config.py file
     entrypoint: influx setup --bucket sensordata_bucket -t sensordata_token123 -o sensordata_organization --username=admin --password=admin123 --host=http://influxdb:8086 -f
       # Wait for the influxd service in the influxdb container has fully bootstrapped before trying to setup an influxdb instance with the influxdb_cli service. 

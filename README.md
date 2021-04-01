@@ -1,5 +1,7 @@
 # Asset Monitoring Dashboard: Meraki IoT + Industrial Asset Vision
 
+> NEW UPDATE: Support of the updated IAV MQTT JSON schema
+
 2in1 Dashboard: Simply install your own dashboard anywhere within minutes with **Docker-Compose**, **InfluxDBv2** time series database and **Grafana** dashboard.
 
 * **Meraki MT sensors** – ideal for Meraki network users to monitor indoor IT facilities like network closets
@@ -89,7 +91,9 @@ If you are not familiar with Docker compose, go ahead to check the [documentatio
 
 ## Versioning
 
-**1.0** (Feb 2021) - Initial version.
+**1.1** (Apr 2021) - Updated to support new IAV MQTT JSON schema, various bugfixes
+
+**1.0** (Feb 2021) - Initial version
 
 
 ## License

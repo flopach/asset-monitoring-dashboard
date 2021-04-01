@@ -1,8 +1,8 @@
-# Asset Monitoring Dashboard 1.0
+# Asset Monitoring Dashboard 1.1
 # Cisco Meraki IoT + Cisco Industrial Asset Vision
 # MIT License, flopach / Cisco Systems 2021
 
-from influxdb_client import InfluxDBClient, Point
+from influxdb_client import InfluxDBClient, WritePrecision, Point
 from influxdb_client.client.write_api import SYNCHRONOUS
 import config
 from urllib3 import Retry

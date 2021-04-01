@@ -1,4 +1,4 @@
-# Asset Monitoring Dashboard 1.0
+# Asset Monitoring Dashboard 1.1
 # Cisco Meraki IoT + Cisco Industrial Asset Vision
 # MIT License, flopach / Cisco Systems 2021
 
@@ -63,7 +63,8 @@ def get_historical_sensor_reading(sensor_serial,metric,timespan,resolution):
 
 def get_sensor_name_mapping():
 	"""
-	Get all sensor serials
+	Get the names of all Meraki MT sensors and map it to the serials numbers in a dictionary
+	Will be used for inserting into the database
 	"""
 	headers = {
 		"Content-Type": "application/json",
@@ -87,16 +88,19 @@ def get_sensor_name_mapping():
 def put_historical_data_into_influx_temp_hum(sensor_serial,timespan,resolution):
 	"""
 	Insert historical data into InfluxDB - temperature + humidity only
+	Using the Meraki Dashboard API functions 
 	"""
 	try:
 		# read temperature data + insert into dataframe
 		temperature_readings = get_historical_sensor_reading(sensor_serial,"temperature",timespan,resolution)
+		time.sleep(5)
 		df = pd.DataFrame(temperature_readings[0]["data"])
 		df = df.rename(columns={"ts":"ts","value":"temperature"})
 		df = df.set_index("ts")
 
 		# read humidity data + insert into dataframe
 		humidity_readings = get_historical_sensor_reading(sensor_serial,"humidity",timespan,resolution)
+		time.sleep(5)
 		df_hum = pd.DataFrame(humidity_readings[0]["data"])
 		df_hum = df_hum.rename(columns={"ts":"ts","value":"humidity"})
 		df_hum = df_hum.set_index("ts")
@@ -120,10 +124,12 @@ def put_historical_data_into_influx_temp_hum(sensor_serial,timespan,resolution):
 def put_historical_data_into_influx_door_water(sensor_serial,sensor_type,timespan,resolution):
 	"""
 	Insert historical data into InfluxDB - door or waterleak
+	Using the Meraki Dashboard API functions 
 	"""
 	# read temperature data + insert into dataframe
 	try:
 		temperature_readings = get_historical_sensor_reading(sensor_serial,sensor_type,timespan,resolution)
+		time.sleep(5)
 		df = pd.DataFrame(temperature_readings[0]["data"])
 		df = df.rename(columns={"ts":"ts","value":"status"})
 		df = df.set_index("ts")
@@ -143,10 +149,16 @@ def put_historical_data_into_influx_door_water(sensor_serial,sensor_type,timespa
 
 
 def main():
+	"""
+	starts when main is started in a thread
+	"""
+
+	# Mapping sensor name with serials from config.py
 	print("Getting Meraki sensor information from Meraki Dashboard API")
 	global sensor_name_mapping
 	sensor_name_mapping = get_sensor_name_mapping()
 
+	# Gets at first the hisorical sensor data from the sensors in config.py
 	print("Getting historical sensor data")
 	for s in config.temperature_sensors:
 		put_historical_data_into_influx_temp_hum(s,2592000,3600) #last 30 days, sensor reading every 60 min, average
@@ -157,6 +169,7 @@ def main():
 	for s in config.waterleak_sensors:
 		put_historical_data_into_influx_door_water(s,"water_detection",86400,120) #last day, sensor reading every 2 min
 
+	# Requests every 10min the latest sensor data from the Meraki Dashboard and inserts the data into influxDB
 	while True:
 		print("Polling now latest sensor data")
 		for s in config.temperature_sensors:
